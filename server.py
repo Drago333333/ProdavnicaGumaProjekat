@@ -118,6 +118,35 @@ def proizvodi():
     return render_template('proizvodi.html', gume=sve_gume)
 
 
+# RUTA ZA ZAKAZIVANJE SERVISA
+@app.route('/zakazi', methods=['GET', 'POST'])
+def zakazi_servis():
+    poruka = None 
+    if request.method == 'POST':
+        ime_prezime = request.form.get('ime_prezime')
+        telefon = request.form.get('telefon')
+        email = request.form.get('email')
+        vozilo = request.form.get('vozilo')
+        vrsta_usluge = request.form.get('vrsta_usluge')
+        datum_servisa = request.form.get('datum_servisa')
+
+        konekcija = get_db_connection()
+        kursor = konekcija.cursor()
+        
+        sql = """INSERT INTO zakazivanje_servisa 
+                 (ime_prezime, telefon, email, vozilo, vrsta_usluge, datum_servisa) 
+                 VALUES (%s, %s, %s, %s, %s, %s)"""
+        vrednosti = (ime_prezime, telefon, email, vozilo, vrsta_usluge, datum_servisa)
+        
+        kursor.execute(sql, vrednosti)
+        konekcija.commit() 
+        kursor.close()
+        konekcija.close()
+        poruka = "Vaš upit je uspešno poslat! Kontaktiraćemo vas uskoro."
+
+    return render_template('zakazivanje.html', poruka=poruka)
+
+
 if __name__ == '__main__':
     
     app.run(debug=True)

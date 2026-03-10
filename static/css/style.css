@@ -776,3 +776,50 @@ h1 {
     width: 100%;
 }
 
+
+/* FORMA ZA ZAKAZIVANJE SERVISA */
+.zakazivanje-kontejner {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.zakazivanje-kontejner h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.forma-grupa {
+    margin-bottom: 20px;
+}
+
+.forma-grupa label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.forma-grupa input, .forma-grupa select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+    font-size: 16px;
+}
+
+.uspesna-poruka {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
