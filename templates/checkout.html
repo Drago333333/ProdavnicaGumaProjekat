@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kasa - Servis&Gume</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="background-color: #f4f4f9;">
+
+    <nav class="glavna-navigacija">
+        <div class="logo"><h2><a href="/" style="color: white; text-decoration: none;">🛞 Servis&Gume</a></h2></div>
+        <ul class="meni"><li><a href="/korpa">⬅ NAZAD U KORPU</a></li></ul>
+    </nav>
+
+    <div class="zakazivanje-kontejner">
+        <h2 style="text-align: center; color: #cc0000;">Detalji isporuke</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Ukupno za naplatu: <strong>{{ ukupno }} RSD</strong></p>
+
+        <form action="/kupi" method="POST" class="zakazivanje-forma">
+            <div class="forma-grupa">
+                <label>Ime i prezime:</label>
+                <input type="text" name="ime_prezime" required placeholder="Petar Petrović">
+            </div>
+            <div class="forma-grupa">
+                <label>Adresa za dostavu:</label>
+                <input type="text" name="adresa" required placeholder="Ulica i broj, Grad, Poštanski broj">
+            </div>
+            <div class="forma-grupa">
+                <label>Telefon:</label>
+                <input type="text" name="telefon" required placeholder="06X/XXXXXXX">
+            </div>
+            
+            <input type="hidden" name="ukupna_cena" value="{{ ukupno }}">
+
+            <button type="submit" class="dugme-pretraga" style="width: 100%; font-size: 18px; padding: 15px;">Potvrdi i Naruči</button>
+        </form>
+    </div>
+
+</body>
+</html>

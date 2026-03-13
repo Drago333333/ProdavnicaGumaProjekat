@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Zakaži servis - Servis&Gume</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="background-color: #f4f4f9;">
+
+    <nav class="glavna-navigacija">
+        <div class="logo"><h2><a href="/" style="color: white; text-decoration: none;">🛞 Servis&Gume</a></h2></div>
+        <ul class="meni"><li><a href="/">⬅ NAZAD NA POČETNU</a></li></ul>
+    </nav>
+
+    <div class="zakazivanje-kontejner">
+        <h2>Zakažite servis za vaše vozilo</h2>
+        
+        {% if poruka %}
+            <div class="uspesna-poruka">✅ {{ poruka }}</div>
+        {% endif %}
+
+        <form action="/zakazi" method="POST" class="zakazivanje-forma">
+            <div class="forma-grupa">
+                <label>Ime i prezime:</label>
+                <input type="text" name="ime_prezime" required placeholder="Npr. Petar Petrović">
+            </div>
+            
+            <div class="forma-grupa">
+                <label>Telefon:</label>
+                <input type="text" name="telefon" required placeholder="06X/XXXXXXX">
+            </div>
+
+            <div class="forma-grupa">
+                <label>Email:</label>
+                <input type="email" name="email" placeholder="petar@primer.com">
+            </div>
+
+            <div class="forma-grupa">
+                <label>Marka i model vozila:</label>
+                <input type="text" name="vozilo" required placeholder="Npr. Škoda Octavia 2018">
+            </div>
+
+           <div class="forma-grupa">
+                <label>Vrsta usluge:</label>
+                <select name="vrsta_usluge" required>
+                    <option value="">-- Izaberite uslugu --</option>
+                    <option value="Mali servis">Mali servis</option>
+                    <option value="Veliki servis">Veliki servis</option>
+                    <option value="Montaža i balansiranje guma">Montaža i balansiranje guma</option>
+                    <option value="Popravka guma">Popravka guma</option> <option value="Zamena kočnica">Zamena kočnica</option>
+                </select>
+            </div>
+
+            <div class="forma-grupa">
+                <label>Željeni datum:</label>
+                <input type="date" name="datum_servisa" required>
+            </div>
+
+            <button type="submit" class="dugme-pretraga" style="width: 100%;">Pošalji upit za servis</button>
+        </form>
+    </div>
+
+</body>
+</html>
