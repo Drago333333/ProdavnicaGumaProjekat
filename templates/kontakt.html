@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Servis & Gume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/kontakt.css') }}">
+</head>
+<body>
+    <nav class="glavna-navigacija">
+       <div class="logo">
+            <h2><a href="{{ url_for('index_strana') if index_strana else '/' }}" style="color: white; text-decoration: none;">🛞 Servis&Gume</a></h2>
+        </div>
+        
+        <ul class="meni">
+            <li class="istaknuto"><a href="/akcije">AKCIJA</a></li>
+            <li class="dropdown">
+                <a href="#">SERVIS <span class="strelica">▼</span></a>
+                <div class="dropdown-sadrzaj">
+                    <div class="kolona">
+                        <h4>AUTO SERVIS</h4>
+                        <a href="/zakazi">Mali servis</a>
+                        <a href="/zakazi">Veliki servis</a>
+                        <a href="/zakazi">Zamena kočionog sistema</a>
+                    </div>
+                    <div class="kolona">
+                        <h4>VULKANIZERSKE USLUGE</h4>
+                        <a href="/zakazi">Montaža i balansiranje</a>
+                        <a href="/zakazi">Popravka guma</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="/proizvodi">GUME</a></li>
+            <li><a href="/kontakt">KONTAKT</a></li>
+            <li class="zakazi-tab"><a href="/zakazi">📅 Upit za auto servis</a></li>
+        </ul>
+        
+        <div class="ikone">
+            <a href="/korpa" style="color: white; text-decoration: none;">
+                🛒 Moja korpa 
+                <span class="korpa-brojac">
+                    {{ session.korpa|length if session.korpa else 0 }}
+                </span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="kontakt-sekcija">
+        <div class="kontakt-sadrzaj">
+            <div class="kontakt-info">
+                <h1>Kontaktirajte nas</h1>
+                <p class="podnaslov">Tu smo da obezbedimo sigurnost vašem vozilu.</p>
+                
+                <div class="detalji">
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Adresa:</strong>Cara Dušana 28, 32000 Čačak</p>
+                    <p><i class="fas fa-phone-alt"></i> <strong>Telefon:</strong> 011/333-555</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> info@servisigume.rs</p>
+                    <p><i class="fas fa-clock"></i> <strong>Radno vreme:</strong><br>
+                       <span>Pon-Sub | 08:00-20:00h</span>
+                    </p>
+                </div>
+                <h4 id="zapratite-nas">Zapratite nas na društvenim mrežama</h4>
+                <div class="drustvene-mreze">
+                    <a href="#" target="_blank" class="ikona instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="ikona facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="ikona tiktok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="kontakt-mapa">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1889.8348041804422!2d20.343926083578697!3d43.89544739499655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47577210f8eb8d45%3A0x636a6960f5ad70de!2z0KbQsNGA0LAg0JTRg9GI0LDQvdCwIDI4LCDQp9Cw0YfQsNC6IDE4ODM1!5e0!3m2!1ssr!2srs!4v1773066038438!5m2!1ssr!2srs" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="novi-footer">
+        <div class="footer-sadrzaj">
+            
+            <div class="footer-kolona">
+                <h2 style="color: white; margin-bottom: 20px; font-style: italic;">🛞 Servis&Gume</h2>
+                <p>Telefon: 011 / 333 - 555</p>
+                <p>E-mail: info@servisgume.rs</p>
+                <p>Radno vreme: Pon - Sub | 08:00 - 20:00h</p>
+                <div class="social-ikone">
+                    <a href="#" class="ikona-insta"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="ikona-fb"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="ikona-tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-kolona">
+                <h4>ADRESA</h4>
+                <p>Cara Dušana 28, 32000 Čačak</p>
+            </div>
+            
+            <div class="footer-kolona">
+                <h4>KATEGORIJE</h4>
+                <a href="/proizvodi?kategorija=Putnička+vozila">Putnička vozila</a>
+                <a href="/proizvodi?kategorija=Džip+/+SUV">SUV i Terenci</a>
+                <a href="/proizvodi?kategorija=Kombi+vozila">Kombi vozila</a>
+                <a href="/akcije">Gume na akciji</a>
+            </div>
+
+            <div class="footer-kolona">
+                <h4>STRANICE</h4>
+                <a href="/">Početna</a>
+                <a href="/proizvodi">Sve gume</a>
+                <a href="/zakazi">Zakaži servis</a>
+                <a href="/kontakt">Kontakt</a>
+                <a href="/korpa">Moja korpa</a>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>
