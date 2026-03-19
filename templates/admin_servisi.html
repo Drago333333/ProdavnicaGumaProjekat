@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <title>Admin - Upravljanje servisima</title>
+</head>
+<body>
+
+    <div class="admin-kontejner">
+        <a href="/" class="nazad">⬅ Nazad na sajt</a>
+        <h1>Upravljanje zakazanim servisima</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Klijent</th>
+                    <th>Vozilo</th>
+                    <th>Usluga</th>
+                    <th>Željeni datum</th>
+                    <th>Trenutni status</th>
+                    <th>Promeni status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servis in servisi %}
+                <tr>
+                    <td>#{{ servis.id }}</td>
+                    <td>
+                        <strong>{{ servis.ime_prezime }}</strong><br>
+                        📞 {{ servis.telefon }}<br>
+                        ✉️ {{ servis.email }}
+                    </td>
+                    <td>{{ servis.vozilo }}</td>
+                    <td>{{ servis.vrsta_usluge }}</td>
+                    <td>{{ servis.datum_servisa }}</td>
+                    <td class="status-{{ servis.status|replace(' ', '-')|replace('č', 'c') }}">
+                        <strong>{{ servis.status }}</strong>
+                    </td>
+                    <td>
+                        <form action="/admin/azuriraj_status/{{ servis.id }}" method="POST" style="display: flex; gap: 10px;">
+                            <select name="novi_status">
+                                <option value="Na čekanju" {% if servis.status == 'Na čekanju' %}selected{% endif %}>Na čekanju</option>
+                                <option value="U procesu" {% if servis.status == 'U procesu' %}selected{% endif %}>U procesu</option>
+                                <option value="Gotovo" {% if servis.status == 'Gotovo' %}selected{% endif %}>Gotovo</option>
+                            </select>
+                            <button type="submit" class="dugme-azuriraj">Sačuvaj</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

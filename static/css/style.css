@@ -12,261 +12,6 @@ h1 {
     color: #cc0000; 
 }
 
-/* NAVIGACIONI BAR */
-.glavna-navigacija {
-    display: flex;
-    align-items: center;
-    background-color: #1c1d21;
-    color: white;
-    padding: 0 50px;
-    border-bottom: 1px solid #333;
-}
-
-.logo {
-    flex: 1; /* Zauzima tacno levu trecinu stranice */
-}
-
-.meni {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    flex: 1; 
-    justify-content: center; /* Drzi stavke u centru ekrana */
-}
-
-.ikone {
-    flex: 1; 
-    display: flex;
-    justify-content: flex-end; /* Gura korpu skroz uz desnu ivicu */
-    align-items: center;
-}
-
-.meni > li {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.meni > li > a {
-    color: #ccc;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    padding: 25px 20px;
-    display: block;
-    transition: color 0.3s;
-}
-
-.meni > li > a:hover {
-    color: white;
-}
-
-.strelica {
-    font-size: 10px;
-    margin-left: 5px;
-}
-
-/* Dugme AKCIJA */
-.istaknuto {
-    background-color: #b50000; 
-}
-.istaknuto > a {
-    color: white !important;
-}
-.istaknuto:hover {
-    background-color: #004494;
-}
-
-.dropdown-sadrzaj {
-    display: none; 
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #1c1d21;
-    min-width: 400px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    z-index: 1000;
-    padding: 30px;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 30px;
-    border-top: 3px solid #cc0000; 
-}
-
-/* Prikazuje se tek kada se misem predje preko dugmeta GUME */
-.dropdown:hover .dropdown-sadrzaj {
-    display: grid; 
-}
-
-.kolona h4 {
-    color: white;
-    font-size: 13px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.kolona a {
-    display: block;
-    color: #aaa;
-    text-decoration: none;
-    font-size: 13px;
-    margin-bottom: 10px;
-    transition: color 0.2s;
-}
-
-.kolona a:hover {
-    color: white;
-}
-
-/* Brojac za korpu */
-.ikone span {
-    position: relative; 
-    margin-left: 20px;
-    font-size: 14px;
-    cursor: pointer;
-    color: #ccc;
-    transition: color 0.3s;
-}
-.ikone span:hover {
-    color: white;
-}
-
-.korpa-brojac {
-    position: absolute;
-    left: -16px;
-    top: -6px;      
-    right: -2px;    
-    background-color: #cc0000;
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-/* DUGME ZA ZAKAZIVANJE  */
-.zakazi-tab a {
-    background-color: rgba(204, 0, 0, 0.1); 
-    border: 2px solid #cc0000;
-    border-radius: 6px;
-    color: white !important;
-    padding: 10px 20px !important; 
-    margin-left: 20px; 
-    font-size: 16px !important; 
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-.zakazi-tab a:hover {
-    background-color: #cc0000;
-    transform: scale(1.05); 
-    box-shadow: 0 4px 10px rgba(204, 0, 0, 0.4);
-}
-
-
-
-/* 2. HERO SEKCIJA I FILTER */
-.hero-sekcija {
-    background-image: url('../images/hero-pozadina.jpg'); 
-    background-size: cover; 
-    background-position: center; 
-    height: 500px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    /* Dodajemo tamni sloj preko slike da bi se filter bolje video */
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5); 
-}
-
-
-.filter-kontejner {
-    background: rgba(0, 0, 0, 0.7); /* Lepa polutransparentna pozadina iza filtera */
-    padding: 40px 50px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.filter-kontejner h2 {
-    color: white;
-    margin-bottom: 25px;
-    font-size: 32px; 
-    letter-spacing: 1px;
-}
-
-.filter-forma {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; 
-    flex-wrap: wrap;
-}
-
-.filter-forma select {
-    padding: 15px 20px; 
-    font-size: 16px;
-    border-radius: 6px;
-    border: 2px solid #fff;
-    outline: none;
-    cursor: pointer;
-    background-color: #fff;
-    color: #333;
-    min-width: 160px;
-    transition: border-color 0.3s;
-}
-
-.filter-forma select:focus {
-    border-color: #cc0000; 
-}
-
-.filter-forma .dugme-pretraga {
-    padding: 15px 35px;
-    font-size: 18px; 
-    font-weight: bold;
-    background-color: #cc0000;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.filter-forma .dugme-pretraga:hover {
-    background-color: #aa0000;
-    transform: scale(1.05); /* Blago se uveca kad se predje misem */
-}
-
-
-.akcija-baner {
-    background: linear-gradient(90deg, #cc0000 0%, #990000 100%); 
-    color: white;
-    text-align: center;
-    padding: 20px 40px;
-    width: 80%;
-    max-width: 800px;
-    margin: -40px auto 40px auto; 
-    border-radius: 8px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
-    position: relative; 
-    z-index: 10;
-}
-
-.akcija-baner h3 {
-    margin: 0 0 5px 0;
-    font-size: 26px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.akcija-baner p {
-    margin: 0;
-    font-size: 15px;
-    color: #ffcccc; 
-}
-
 .gume-kontejner {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -275,6 +20,7 @@ h1 {
     margin: 0 auto;
 }
 
+/* Izgled pojedinacne kartice za gumu */
 .guma-kartica {
     background-color: white;
     border-radius: 8px;
@@ -282,7 +28,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.2s;
-    position: relative; 
+    position: relative;
 }
 
 .guma-kartica:hover {
@@ -294,14 +40,6 @@ h1 {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-/* Izgled slike gume unutar kartice */
-.slika-gume {
-    width: 100%;
-    height: 200px;
-    object-fit: contain; /* da se slika ne bi razvukla */
-    margin: 15px 0;
 }
 
 .model {
@@ -333,126 +71,244 @@ h1 {
     background-color: #aa0000;
 }
 
-/* Stilovi za Akciju */
-.akcija-bedz {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #cc0000;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-    z-index: 2;
-}
+/* NAVIGACIONI BAR */
 
-.stara-cena {
-    text-decoration: line-through;
-    color: #888;
-    font-size: 14px;
-    margin-right: 10px;
-}
-
-.nova-cena {
-    color: #cc0000;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.prava-cena {
-    color: #333; 
-    font-weight: bold;
-    font-size: 20px;
-}
-
-/* Info sekcije, Brendovi i Footer) */
-
-/* ZASTO KUPITI GUME KOD NAS */
-.zasto-mi-sekcija {
-    padding: 60px 20px 80px 20px;
-    background-color: #fff; 
-    text-align: center;
-    border-top: 1px solid #ddd;
-}
-
-.zasto-naslov {
-    font-size: 30px;
-    color: #333;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.zasto-kontejner {
+.glavna-navigacija {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
+    align-items: center;
+    height: 80px; 
+    padding: 0 50px;
+    border-bottom: 1px solid #333;
+    position: sticky; 
+    top: 0;           
+    z-index: 1000;    
+    background-color: #1c1d21; 
 }
 
-.zasto-kartica {
-    background-color: #f9f9f9;
-    padding: 30px 20px;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 280px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    border-top: 4px solid #cc0000; 
-    transition: transform 0.3s;
+.meni > li > a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px 20px; 
+    display: block;
+    transition: color 0.3s;
 }
 
-.zasto-kartica:hover {
-    transform: translateY(-5px);
+.logo {
+    flex: 1; 
 }
 
-.zasto-ikona {
-    font-size: 45px;
-    margin-bottom: 15px;
+.meni {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    flex: 2; 
+    justify-content: center; 
 }
 
-.zasto-kartica h3 {
-    color: #cc0000;
-    margin-bottom: 15px;
-    font-size: 20px;
-}
-
-.zasto-kartica p {
-    color: #666;
-    line-height: 1.6;
-    font-size: 15px;
-}
-
-/* PRELAZNI BANER ZA SERVIS */
-.servis-baner {
-    background: linear-gradient(90deg, #1a1a1a 0%, #333 100%); 
-    color: white;
-    text-align: center;
-    padding: 25px 40px;
-    width: 80%;
-    max-width: 900px;
-    margin: 0 auto -40px auto; 
-    border-radius: 8px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+.meni > li {
     position: relative;
-    z-index: 10;
-    border: 1px solid #444;
+    display: flex;
+    align-items: center;
 }
 
-.servis-baner h3 {
-    margin: 0 0 10px 0;
-    font-size: 24px;
-    letter-spacing: 1px;
+.meni > li > a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 25px 20px;
+    display: block;
+    transition: color 0.3s;
+}
+
+.meni > li > a:hover {
+    color: white;
+}
+
+.strelica {
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+/* Plavo istaknuto dugme akcija */
+.istaknuto {
+    background-color: #b50000; 
+}
+.istaknuto > a {
+    color: white !important;
+}
+.istaknuto:hover {
+    background-color: #004494;
+}
+
+.dropdown-sadrzaj {
+    display: none; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1c1d21;
+    min-width: 400px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    z-index: 1000;
+    padding: 30px;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+    border-top: 3px solid #cc0000; 
+}
+
+/* Prikazuje se tek kada se misem predje preko dugmeta gume */
+.dropdown:hover .dropdown-sadrzaj {
+    display: grid; 
+}
+
+.kolona h4 {
+    color: white;
+    font-size: 13px;
+    margin-bottom: 15px;
     text-transform: uppercase;
 }
 
-.servis-baner p {
-    margin: 0;
+.kolona a {
+    display: block;
     color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+    padding: 0 !important; 
+}
+
+.kolona a:hover {
+    color: white;
+}
+
+.desktop-ikone {
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.mobilni-ikone {
+    display: none; 
+}
+
+.korpa-link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
     font-size: 16px;
 }
 
+/* BROJAC ZA KORPU */
+.korpa-brojac {
+    position: absolute !important;
+    top: -10px !important;
+    right: -15px !important;
+    width: 20px;
+    height: 20px;
+    background-color: #cc0000;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* Stil za hamburger dugme */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* GLAVNA SEKCIJA (HERO SEKCIJA) I FILTER */
+.hero-sekcija {
+    background-image: url('../images/hero-pozadina.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 500px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5); 
+}
+
+/* Izgled slike gume unutar kartice */
+.slika-gume {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; 
+    margin: 15px 0;
+}
+
+/* BRENDOVI */
+.brendovi-sekcija {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+.brend-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #888;
+}
+
+.akcija-baner {
+    background: linear-gradient(90deg, #cc0000 0%, #990000 100%); 
+    color: white;
+    text-align: center;
+    padding: 20px 40px;
+    width: 80%;
+    max-width: 800px;
+    margin: -40px auto 40px auto; 
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+    position: relative; 
+    z-index: 10;
+}
+
+.akcija-baner h3 {
+    margin: 0 0 5px 0;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.akcija-baner p {
+    margin: 0;
+    font-size: 15px;
+    color: #ffcccc; 
+}
+
+/* FOOTER */
+.sajt-footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1a1a1a;
+    color: #bbb;
+    padding: 40px 20px;
+}
+.sajt-footer h4 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* USLUGE SEKCIJA */
 .usluge-sekcija {
     background-color: #1a1a1a; 
     color: white;
@@ -567,7 +423,6 @@ h1 {
     color: #aaa;
 }
 
-
 .brendovi-sekcija-nova {
     background-color: #111; 
     padding: 60px 20px;
@@ -611,7 +466,290 @@ h1 {
     transform: scale(1.1); 
 }
 
-/* FOOTER */
+/* STRANICA SVI PROIZVODI */
+.proizvodi-kontejner {
+    display: flex;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.bocni-filteri {
+    background-color: #2c2d30; 
+    padding: 25px;
+    border-radius: 8px;
+    width: 280px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    flex-shrink: 0; 
+}
+
+.bocni-filteri h3 {
+    margin-top: 0;
+    color: #cc0000;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.bocni-filteri label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #bbb;
+}
+
+.bocni-filteri select, .bocni-filteri input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1a1a1a;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* Izgled dugmeta primeni filtere  */
+.bocni-filteri button {
+    width: 100%;
+    background-color: #cc0000; 
+    color: white; 
+    border: none;
+    padding: 15px; 
+    font-size: 18px; 
+    font-weight: bold; 
+    border-radius: 6px; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px; 
+}
+
+/* Efekat kada se predje misem preko dugmeta */
+.bocni-filteri button:hover {
+    background-color: #aa0000; 
+    transform: scale(1.02); 
+}
+
+.rezultati-gume {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.desna-kolona {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.sortiranje-red {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    margin-bottom: 20px;
+    color: #bbb;
+}
+
+.sortiranje-red label {
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.sortiranje-red select {
+    background-color: #2c2d30;
+    color: white;
+    border: 1px solid #444;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.sortiranje-red select:focus {
+    border-color: #cc0000;
+}
+
+/* ZASTO KUPITI GUME KOD NAS */
+.zasto-mi-sekcija {
+    padding: 60px 20px 80px 20px;
+    background-color: #fff; 
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.zasto-naslov {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.zasto-kontejner {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.zasto-kartica {
+    background-color: #f9f9f9;
+    padding: 30px 20px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-top: 4px solid #cc0000; 
+    transition: transform 0.3s;
+}
+
+.zasto-kartica:hover {
+    transform: translateY(-5px);
+}
+
+.zasto-ikona {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.zasto-kartica h3 {
+    color: #cc0000;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.zasto-kartica p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* PRELAZNI BANER ZA SERVIS */
+.servis-baner {
+    background: linear-gradient(90deg, #1a1a1a 0%, #333 100%); 
+    color: white;
+    text-align: center;
+    padding: 25px 40px;
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto -40px auto; 
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 10;
+    border: 1px solid #444;
+}
+
+.servis-baner h3 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.servis-baner p {
+    margin: 0;
+    color: #aaa;
+    font-size: 16px;
+}
+
+.akcija-bedz {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #cc0000;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.stara-cena {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.nova-cena {
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.prava-cena {
+    color: #333; 
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.filter-kontejner {
+    background: rgba(0, 0, 0, 0.7); 
+    padding: 40px 50px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.filter-kontejner h2 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 32px; 
+    letter-spacing: 1px;
+}
+
+.filter-forma {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; 
+    flex-wrap: wrap;
+}
+
+.filter-forma select {
+    padding: 15px 20px; 
+    font-size: 16px;
+    border-radius: 6px;
+    border: 2px solid #fff;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    min-width: 160px;
+    transition: border-color 0.3s;
+}
+
+.filter-forma select:focus {
+    border-color: #cc0000; 
+}
+
+.filter-forma .dugme-pretraga {
+    padding: 15px 35px;
+    font-size: 18px; 
+    font-weight: bold;
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.filter-forma .dugme-pretraga:hover {
+    background-color: #aa0000;
+    transform: scale(1.05); 
+}
+
+/* Footer*/
 .novi-footer {
     background-color: #111;
     color: #ccc;
@@ -679,147 +817,57 @@ h1 {
 
 .social-ikone a:hover { filter: brightness(1.2); }
 
+/* Zakazivanje */
+.zakazi-tab a {
+    background-color: rgba(204, 0, 0, 0.1);
+    border: 2px solid #cc0000;
+    border-radius: 6px;
+    color: white !important;
+    padding: 10px 20px !important; 
+    margin-left: 20px; 
+    font-size: 16px !important; 
+    font-weight: bold;
+    transition: all 0.3s;
+}
 
-/* STRANICA SVI PROIZVODI (Filteri i Grid) */
+.zakazi-tab a:hover {
+    background-color: #cc0000;
+    transform: scale(1.05); 
+    box-shadow: 0 4px 10px rgba(204, 0, 0, 0.4);
+}
 
-.proizvodi-kontejner {
+.hidden {
+    opacity: 0; 
+    filter: blur(5px); 
+    transform: translateY(30px); 
+    transition: all 0.8s ease-out; 
+}
+
+.show {
+    opacity: 1 !important; 
+    filter: blur(0) !important; 
+    transform: translateY(0) !important; 
+}
+
+.navigacija-desno {
     display: flex;
-    max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 20px;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-/* BOCNI FILTERI (Leva kolona) */
-.bocni-filteri {
-    background-color: #2c2d30;
-    padding: 25px;
-    border-radius: 8px;
-    width: 280px;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    flex-shrink: 0; 
-}
-
-.bocni-filteri h3 {
-    margin-top: 0;
-    color: #cc0000;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.bocni-filteri label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #bbb;
-}
-
-.bocni-filteri select, .bocni-filteri input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #1a1a1a;
-    color: white;
-    box-sizing: border-box;
-}
-
-.bocni-filteri button {
-    width: 100%;
-}
-
-/* DESNA KOLONA (Sortiranje i Gume) */
-.desna-kolona {
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
-}
-
-.sortiranje-red {
-    display: flex;
-    justify-content: flex-end; 
     align-items: center;
-    margin-bottom: 20px;
-    color: #bbb;
+    gap: 30px; 
+    margin-left: auto; 
 }
 
-.sortiranje-red label {
-    margin-right: 15px;
-    font-size: 14px;
+/*UNIVERZALNI STIL ZA LINK "NAZAD / NASTAVI" */
+a.nazad-na-pocetnu,
+a.nastavi-kupovinu {
+    color: #ccc !important;
+    text-decoration: none !important; 
+    font-weight: bold !important;
+    font-size: 14px !important;
+    transition: color 0.3s;
 }
 
-.sortiranje-red select {
-    background-color: #2c2d30;
-    color: white;
-    border: 1px solid #444;
-    padding: 8px 15px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.sortiranje-red select:focus {
-    border-color: #cc0000;
-}
-
-/* Grid samo za rezultate pretrage */
-.rezultati-gume {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    width: 100%;
-}
-
-
-/* FORMA ZA ZAKAZIVANJE SERVISA */
-.zakazivanje-kontejner {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.zakazivanje-kontejner h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
-}
-
-.forma-grupa {
-    margin-bottom: 20px;
-}
-
-.forma-grupa label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-.forma-grupa input, .forma-grupa select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; 
-    font-size: 16px;
-}
-
-.uspesna-poruka {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: bold;
+a.nazad-na-pocetnu:hover,
+a.nastavi-kupovinu:hover {
+    color: white !important;
 }
 

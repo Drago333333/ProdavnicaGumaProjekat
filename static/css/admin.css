@@ -1,0 +1,73 @@
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f4f4f9; 
+    padding: 20px; 
+}
+
+h1 { 
+    color: #cc0000; 
+    text-align: center; 
+}
+
+.admin-kontejner { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    background: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+}
+
+th, td { 
+    border: 1px solid #ddd; 
+    padding: 12px; 
+    text-align: left; 
+}
+
+th { 
+    background-color: #1a1a1a; 
+    color: white; 
+}
+
+select { 
+    padding: 8px; 
+    border-radius: 4px; 
+    border: 1px solid #ccc; 
+    font-weight: bold; 
+}
+
+.dugme-azuriraj { 
+    background-color: #cc0000; 
+    color: white; 
+    border: none; 
+    padding: 8px 15px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+}
+
+.dugme-azuriraj:hover { 
+    background-color: #aa0000; 
+}
+
+.nazad { 
+    display: inline-block; 
+    margin-bottom: 20px; 
+    color: #555; 
+    text-decoration: none; 
+    font-weight: bold; 
+}
+
+.nazad:hover { 
+    color: #cc0000; 
+}
+
+/* Boje za status da bude preglednije */
+.status-Na-cekanju { color: #d35400; font-weight: bold; }
+.status-U-procesu { color: #2980b9; font-weight: bold; }
+.status-Gotovo { color: #27ae60; font-weight: bold; }

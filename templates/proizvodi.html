@@ -2,6 +2,7 @@
 <html lang="sr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Svi proizvodi - Servis&Gume</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,100 +13,100 @@
         <div class="logo">
             <h2><a href="/" style="color: white; text-decoration: none;">🛞 Servis&Gume</a></h2>
         </div>
-        <ul class="meni" style="flex: 1; justify-content: center;">
-            <li><a href="/">⬅ NAZAD NA POČETNU</a></li>
-        </ul>
-        <div class="ikone">
+        
+        <div class="mobilni-ikone">
+            <a href="/korpa" class="korpa-link">
+                🛒 <span class="korpa-brojac">{{ session.korpa|length if session.korpa else 0 }}</span>
+            </a>
+        </div>
+
+        <div class="navigacija-desno">
+            <a href="/" class="nazad-na-pocetnu">⬅ NAZAD NA POČETNU</a>
             
-            <span>
-                <a href="/korpa" style="color: white; text-decoration: none;">
+            <div class="desktop-ikone">
+                <a href="/korpa" class="korpa-link" style="color: white; text-decoration: none;">
                     🛒 Moja korpa 
-                    <span class="korpa-brojac">
-                        {{ session.korpa|length if session.korpa else 0 }}
-                    </span>
+                    <span class="korpa-brojac">{{ session.korpa|length if session.korpa else 0 }}</span>
                 </a>
-            </span>
+            </div>
         </div>
     </nav>
 
     <div class="proizvodi-kontejner">
-        
         <form action="/proizvodi" method="GET" id="filter-forma" class="bocni-filteri">
             <h3>Filtriraj ponudu</h3>
-            
             <label>Tip vozila:</label>
             <select name="kategorija">
-                <option value="">Sva vozila</option>
-                <option value="Putnička vozila">Putnička vozila</option>
-                <option value="Džip / SUV">Džip / SUV</option>
-                <option value="Kombi vozila">Kombi</option>
+                <option value="" {% if not request.args.get('kategorija') %}selected{% endif %}>Sva vozila</option>
+                <option value="Putnička vozila" {% if request.args.get('kategorija') == 'Putnička vozila' %}selected{% endif %}>Putnička vozila</option>
+                <option value="Džip / SUV" {% if request.args.get('kategorija') == 'Džip / SUV' %}selected{% endif %}>Džip / SUV</option>
+                <option value="Kombi vozila" {% if request.args.get('kategorija') == 'Kombi vozila' %}selected{% endif %}>Kombi vozila</option>
             </select>
 
             <label>Sezona:</label>
             <select name="sezona">
-                <option value="">Sve sezone</option>
-                <option value="Letnja">Letnje gume</option>
-                <option value="Zimska">Zimske gume</option>
-                <option value="Sve sezone">Za sve sezone</option>
+                <option value="" {% if not request.args.get('sezona') %}selected{% endif %}>Sve sezone</option>
+                <option value="Letnja" {% if request.args.get('sezona') == 'Letnja' %}selected{% endif %}>Letnje gume</option>
+                <option value="Zimska" {% if request.args.get('sezona') == 'Zimska' %}selected{% endif %}>Zimske gume</option>
+                <option value="Sve sezone" {% if request.args.get('sezona') == 'Sve sezone' %}selected{% endif %}>Za sve sezone</option>
             </select>
 
             <label>Širina:</label>
             <select name="sirina">
-                <option value="">Sve širine</option>
-                <option value="195">195</option>
-                <option value="205">205</option>
-                <option value="225">225</option>
-                <option value="235">235</option>
+                <option value="" {% if not request.args.get('sirina') %}selected{% endif %}>Sve širine</option>
+                <option value="195" {% if request.args.get('sirina') == '195' %}selected{% endif %}>195</option>
+                <option value="205" {% if request.args.get('sirina') == '205' %}selected{% endif %}>205</option>
+                <option value="225" {% if request.args.get('sirina') == '225' %}selected{% endif %}>225</option>
+                <option value="235" {% if request.args.get('sirina') == '235' %}selected{% endif %}>235</option>
             </select>
 
             <label>Visina:</label>
             <select name="visina">
-                <option value="">Sve visine</option>
-                <option value="45">45</option>
-                <option value="55">55</option>
-                <option value="60">60</option>
-                <option value="65">65</option>
-                <option value="75">75</option>
+                <option value="" {% if not request.args.get('visina') %}selected{% endif %}>Sve visine</option>
+                <option value="45" {% if request.args.get('visina') == '45' %}selected{% endif %}>45</option>
+                <option value="55" {% if request.args.get('visina') == '55' %}selected{% endif %}>55</option>
+                <option value="60" {% if request.args.get('visina') == '60' %}selected{% endif %}>60</option>
+                <option value="65" {% if request.args.get('visina') == '65' %}selected{% endif %}>65</option>
+                <option value="75" {% if request.args.get('visina') == '75' %}selected{% endif %}>75</option>
             </select>
 
             <label>Prečnik (R):</label>
             <select name="precnik">
-                <option value="">Svi prečnici</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
+                <option value="" {% if not request.args.get('precnik') %}selected{% endif %}>Svi prečnici</option>
+                <option value="15" {% if request.args.get('precnik') == '15' %}selected{% endif %}>15</option>
+                <option value="16" {% if request.args.get('precnik') == '16' %}selected{% endif %}>16</option>
+                <option value="17" {% if request.args.get('precnik') == '17' %}selected{% endif %}>17</option>
+                <option value="18" {% if request.args.get('precnik') == '18' %}selected{% endif %}>18</option>
             </select>
 
             <label>Proizvođač:</label>
             <select name="proizvodjac">
-                <option value="">Svi brendovi</option>
-                <option value="Michelin">Michelin</option>
-                <option value="Sava">Sava</option>
-                <option value="Tigar">Tigar</option>
-                <option value="Pirelli">Pirelli</option>
-                <option value="Continental">Continental</option>
-                <option value="Dunlop">Dunlop</option>
-                <option value="Goodyear">Goodyear</option>
-                <option value="Hankook">Hankook</option>
-                <option value="Lassa">Lassa</option>
-                <option value="Bridgestone">Bridgestone</option>
+                <option value="" {% if not request.args.get('proizvodjac') %}selected{% endif %}>Svi brendovi</option>
+                <option value="Michelin" {% if request.args.get('proizvodjac') == 'Michelin' %}selected{% endif %}>Michelin</option>
+                <option value="Sava" {% if request.args.get('proizvodjac') == 'Sava' %}selected{% endif %}>Sava</option>
+                <option value="Tigar" {% if request.args.get('proizvodjac') == 'Tigar' %}selected{% endif %}>Tigar</option>
+                <option value="Pirelli" {% if request.args.get('proizvodjac') == 'Pirelli' %}selected{% endif %}>Pirelli</option>
+                <option value="Continental" {% if request.args.get('proizvodjac') == 'Continental' %}selected{% endif %}>Continental</option>
+                <option value="Dunlop" {% if request.args.get('proizvodjac') == 'Dunlop' %}selected{% endif %}>Dunlop</option>
+                <option value="Goodyear" {% if request.args.get('proizvodjac') == 'Goodyear' %}selected{% endif %}>Goodyear</option>
+                <option value="Hankook" {% if request.args.get('proizvodjac') == 'Hankook' %}selected{% endif %}>Hankook</option>
+                <option value="Lassa" {% if request.args.get('proizvodjac') == 'Lassa' %}selected{% endif %}>Lassa</option>
+                <option value="Bridgestone" {% if request.args.get('proizvodjac') == 'Bridgestone' %}selected{% endif %}>Bridgestone</option>
             </select>
 
             <label>Maksimalna cena (RSD):</label>
-            <input type="number" name="maks_cena" placeholder="Npr. 15000">
+            <input type="number" name="maks_cena" placeholder="Npr. 15000" value="{{ request.args.get('maks_cena', '') }}">
 
             <button type="submit" class="dugme-pretraga">Primeni filtere</button>
         </form>
 
         <div class="desna-kolona">
-            
             <div class="sortiranje-red">
                 <label>Sortiranje prema:</label>
                 <select name="sortiranje" form="filter-forma" onchange="document.getElementById('filter-forma').submit()">
-                    <option value="">Popularnosti</option>
-                    <option value="rastuce">Ceni: Od najniže</option>
-                    <option value="opadajuce">Ceni: Od najviše</option>
+                    <option value="" disabled hidden {% if not request.args.get('sortiranje') %}selected{% endif %}>Izaberi...</option>
+                    <option value="rastuce" {% if request.args.get('sortiranje') == 'rastuce' %}selected{% endif %}>Ceni: Od najniže</option>
+                    <option value="opadajuce" {% if request.args.get('sortiranje') == 'opadajuce' %}selected{% endif %}>Ceni: Od najviše</option>
                 </select>
             </div>
 
@@ -115,9 +116,9 @@
                         {% if guma.popust > 0 %}
                             <div class="akcija-bedz">-%{{ guma.popust }}</div>
                         {% endif %}
-
+                        
                         <div class="brend">{{ guma.proizvodjac }} | {{ guma.kategorija }}</div>
-                        <img src="/static/images/{{ guma.slika_url }}" alt="{{ guma.model }}" class="slika-gume">
+                        <img src="/static/images/{{ guma.slika_url }}" class="slika-gume">
                         <h3 class="model">{{ guma.model }}</h3>
                         <p class="dimenzije">{{ guma.sirina }}/{{ guma.visina }} R{{ guma.precnik }}</p>
                         
@@ -130,56 +131,13 @@
                             {% endif %}
                         </div>
 
-                        <form action="/dodaj_u_korpu/{{ guma.id }}" method="POST" style="margin-top: 15px;">
-                            <button type="submit" class="dugme-korpa" style="margin-top: 0;">Dodaj u korpu</button>
+                        <form action="/dodaj_u_korpu/{{ guma.id }}" method="POST" class="forma-korpa" style="margin-top: 15px;">
+                            <button type="submit" class="dugme-korpa">Dodaj u korpu</button>
                         </form>
                     </div>
                 {% else %}
-                    <h3 style="color: white; width: 100%;">Nema rezultata za tražene filtere.</h3>
+                    <h3 style="color: white; width: 100%; text-align: center;">Nema rezultata za tražene filtere.</h3>
                 {% endfor %}
             </main>
 
-        </div> 
-    </div> 
-
-    <footer class="novi-footer">
-        <div class="footer-sadrzaj">
-            
-            <div class="footer-kolona">
-                <h2 style="color: white; margin-bottom: 20px; font-style: italic;">🛞 Servis&Gume</h2>
-                <p>Telefon: 011 / 333 - 555</p>
-                <p>E-mail: info@servisgume.rs</p>
-                <p>Radno vreme: Pon - Sub | 08:00 - 20:00h</p>
-                <div class="social-ikone">
-                    <a href="#" class="ikona-insta"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="ikona-fb"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="ikona-tiktok"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-kolona">
-                <h4>ADRESA</h4>
-                <p>Cara Dušana 28, 32000 Čačak</p>
-            </div>
-            
-            <div class="footer-kolona">
-                <h4>KATEGORIJE</h4>
-                <a href="/proizvodi?kategorija=Putnička+vozila">Putnička vozila</a>
-                <a href="/proizvodi?kategorija=Džip+/+SUV">SUV i Terenci</a>
-                <a href="/proizvodi?kategorija=Kombi+vozila">Kombi vozila</a>
-                <a href="/akcije">Gume na akciji</a>
-            </div>
-
-            <div class="footer-kolona">
-                <h4>STRANICE</h4>
-                <a href="/">Početna</a>
-                <a href="/proizvodi">Sve gume</a>
-                <a href="/zakazi">Zakaži servis</a>
-                <a href="/korpa">Moja korpa</a>
-            </div>
-
-        </div>
-    </footer>
-
-</body>
-</html>
+ <script src="{{ url_for('static', filename='js/proizvodi.js') }}" defer></script>           

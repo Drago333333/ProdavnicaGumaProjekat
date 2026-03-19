@@ -1,6 +1,6 @@
 import mysql.connector
 
-# Povezivanje na bazu
+
 konekcija = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -11,7 +11,7 @@ kursor = konekcija.cursor()
 
 print("Povezivanje sa bazom uspešno. Započinjem unos podataka...")
 
-# 1. Spisak svih 10 brendova sa sajta
+# Spisak svih brendova
 brendovi = [
     ('Michelin', 'Francuska'), ('Sava', 'Slovenija'), ('Tigar', 'Srbija'),
     ('Pirelli', 'Italija'), ('Continental', 'Nemačka'), ('Dunlop', 'Velika Britanija'),
@@ -19,17 +19,17 @@ brendovi = [
     ('Bridgestone', 'Japan')
 ]
 
-# Ubacujemo brendove ako već ne postoje
+# Ubacivanje brendova ako vec ne postoje
 for naziv, zemlja in brendovi:
     kursor.execute("SELECT id FROM proizvodjaci WHERE naziv = %s", (naziv,))
     if not kursor.fetchone():
         kursor.execute("INSERT INTO proizvodjaci (naziv, zemlja_porekla) VALUES (%s, %s)", (naziv, zemlja))
 konekcija.commit()
 
+# Mapiranje imena brendova u njihove ID-jeve iz baze
 kursor.execute("SELECT naziv, id FROM proizvodjaci")
 proizvodjaci_mapa = {red[0]: red[1] for red in kursor.fetchall()}
 
-# 2. Tacni i realisticni podaci za 40 guma (Brend, Kategorija, Model, Sirina, Visina, Precnik, Sezona, Cena)
 # Kategorije: 1 = Putnicka, 2 = Dzip/SUV, 3 = Kombi
 gume_podaci = [
     # Michelin
@@ -89,7 +89,7 @@ for guma in gume_podaci:
     brend, kategorija_id, model, sirina, visina, precnik, sezona, cena = guma
     proizvodjac_id = proizvodjaci_mapa.get(brend)
     
-    # Dodeljujemo sliku na osnovu sezone 
+    # Dodeljujemo sliku na osnovu sezone kako sajt ne bi bio prazan
     if sezona == 'Zimska':
         slika_url = 'lassa_snoways.jpg'
     elif sezona == 'Letnja':

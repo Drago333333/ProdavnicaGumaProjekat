@@ -91,31 +91,3 @@
     border-left: 5px solid #28a745;
 }
 
-/* MOBILNA VERZIJA ZA ZAKAZIVANJE */
-@media screen and (max-width: 768px) {
-    .zakazivanje-kontejner {
-        width: 95% !important; 
-        max-width: 100% !important; 
-        margin: 20px auto !important;
-        padding: 20px !important;
-        box-sizing: border-box !important;
-    }
-
-    .zakazivanje-kontejner h2 {
-        font-size: 22px !important;
-    }
-
-    .forma-grupa input, 
-    .forma-grupa select {
-        width: 100% !important; 
-        box-sizing: border-box !important;
-        font-size: 16px !important; 
-        padding: 12px !important;
-    }
-
-    .dugme-servis {
-        width: 100% !important; 
-        padding: 15px !important;
-        font-size: 18px !important;
-    }
-}
