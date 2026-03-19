@@ -107,3 +107,26 @@ body.kontakt-pozadina {
     opacity: 1; 
 }
 
+/* MOBILNA VERZIJA */
+@media screen and (max-width: 768px) {
+    .kontakt-sadrzaj {
+        flex-direction: column !important; 
+    }
+
+    .kontakt-info {
+        padding: 30px 20px !important;
+    }
+
+    .kontakt-info h1 {
+        font-size: 26px !important;
+    }
+
+    .kontakt-mapa {
+        min-height: 300px !important; 
+    }
+
+    .kontakt-mapa iframe {
+        min-height: 300px !important;
+    }
+}
+
