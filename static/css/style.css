@@ -511,6 +511,12 @@ h1 {
     color: white;
     box-sizing: border-box;
 }
+.oznaka-sezone {
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
+}
 
 /* Izgled dugmeta primeni filtere  */
 .bocni-filteri button {
