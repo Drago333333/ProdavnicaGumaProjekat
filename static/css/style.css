@@ -932,27 +932,53 @@ a.nastavi-kupovinu:hover {
         padding: 15px;
         display: block;
     }
-
+    
+    /* Glavni kontejner podmenija*/
     .dropdown-sadrzaj {
-        position: static; 
-        display: none;    
-        width: 100%;
-        background-color: #111;
-        box-shadow: none;
-        padding: 10px 0;
-        grid-template-columns: 1fr; 
+        position: static !important; 
+        display: none !important; 
+        width: 100% !important;
+        background-color: #111 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
         border-top: none;
     }
 
-    /* Na mobilnom gasimo hover */
-    .dropdown:hover .dropdown-sadrzaj {
-        display: none; 
-    }
-    
     .dropdown-sadrzaj.otvoren {
+        display: block !important; 
+    }
+    .dropdown-sadrzaj .kolona {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    /*Naslovi podmenija*/
+    .dropdown-sadrzaj .kolona h4 {
+        color: #777 !important;
+        font-size: 13px !important;
+        padding: 10px 20px !important;
+        margin: 0 !important;
+        text-align: left !important;
+        background-color: #151515 !important;
+    }
+
+    /*Linkovi*/
+    .dropdown-sadrzaj a {
+        padding: 12px 20px 12px 40px !important;
         display: block !important;
+        text-align: left !important;
+        font-size: 15px !important;
+        border-bottom: 1px solid #222 !important;
+        color: #ccc !important;
+    }
+
+    .dropdown-sadrzaj .kolona:last-child a:last-child {
+        border-bottom: none !important;
     }
     
+   /*Glavna navigacija*/ 
     .glavna-navigacija {
         height: auto;
     }
