@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijava - Servis&Gume</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style="background-color: #1a1a1a;">
+
+    <nav class="glavna-navigacija">
+        <div class="logo">
+            <h2><a href="/" style="color: white; text-decoration: none;">🛞 Servis&Gume</a></h2>
+        </div>
+        <div class="navigacija-desno">
+            <a href="/" class="nazad-na-pocetnu" style="color: white; text-decoration: none;">⬅ NAZAD NA POČETNU</a>
+        </div>
+    </nav>
+
+    <div class="login-kontejner">
+        <form action="/login" method="POST" class="login-forma">
+            <h2 style="color: white; text-align: center; margin-bottom: 25px;">Prijava na sistem</h2>
+            
+            {% if greska %}
+                <div class="greska-poruka">{{ greska }}</div>
+            {% endif %}
+
+            <label for="email">E-mail adresa:</label>
+            <input type="email" id="email" name="email" required placeholder="Unesite vaš e-mail">
+
+            <label for="lozinka">Lozinka:</label>
+            <input type="password" id="lozinka" name="lozinka" required placeholder="Unesite lozinku">
+
+            <button type="submit" class="dugme-korpa" style="margin-top: 10px; width: 100%;">Prijavi se</button>
+            
+            <p class="registracija-link">Nemate nalog? <a href="/register">Registrujte se ovde</a>.</p>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 from collections import Counter
-from flask import Flask, render_template, request, session, redirect, url_for, jsonify 
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
+import json
+from werkzeug.security import generate_password_hash, check_password_hash 
 import mysql.connector
 
 app = Flask(__name__)
@@ -31,6 +33,93 @@ def pocetna():
     kursor.close()
     konekcija.close()
     return render_template('index.html', gume=izdvojene_gume)
+
+
+
+# Login
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+
+        konekcija = get_db_connection()
+        kursor = konekcija.cursor(dictionary=True)
+        
+
+        email = request.form['email']
+        lozinka = request.form['lozinka']
+
+        kursor.execute("SELECT * FROM korisnici_login_info WHERE email = %s", (email,))
+        korisnik = kursor.fetchone()
+
+        if korisnik and check_password_hash(korisnik['lozinka'], lozinka):
+            session['korisnik_id'] = korisnik['id']
+            session['uloga'] = korisnik['uloga']
+            
+            if korisnik['sacuvana_korpa']:
+                session['korpa'] = json.loads(korisnik['sacuvana_korpa'])
+            
+            kursor.close() 
+            konekcija.close() 
+            return redirect('/')
+        else:
+            kursor.close() 
+            konekcija.close() 
+            return render_template('login.html', greska="Pogrešan e-mail ili lozinka!")
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    
+    if 'korisnik_id' in session and 'korpa' in session:
+        konekcija = get_db_connection()
+        kursor = konekcija.cursor()
+        
+        korpa_json = json.dumps(session['korpa']) 
+        
+        kursor.execute("UPDATE korisnici_login_info SET sacuvana_korpa = %s WHERE id = %s", 
+                       (korpa_json, session['korisnik_id']))
+        konekcija.commit()
+        kursor.close()
+        konekcija.close()
+
+    session.clear() 
+    return redirect('/')
+
+
+# Register
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+
+        konekcija = get_db_connection()
+        kursor = konekcija.cursor(dictionary=True)
+
+        ime = request.form['ime']
+        email = request.form['email']
+        lozinka = request.form['lozinka']
+
+        kursor.execute("SELECT * FROM korisnici_login_info WHERE email = %s", (email,))
+        postojeci_korisnik = kursor.fetchone()
+
+        if postojeci_korisnik:
+            return render_template('register.html', greska="Ovaj e-mail je već registrovan!")
+
+        kriptovana_lozinka = generate_password_hash(lozinka)
+
+        kursor.execute("""
+            INSERT INTO korisnici_login_info (ime, email, lozinka, uloga) 
+            VALUES (%s, %s, %s, 'korisnik')
+        """, (ime, email, kriptovana_lozinka))
+        konekcija.commit()
+
+        kursor.close()
+
+        return redirect('/login')
+
+    return render_template('register.html')
 
 # Proizvodi
 @app.route('/proizvodi', methods=['GET'])
@@ -353,6 +442,8 @@ def akcije():
 # Prikaz svih servisa
 @app.route('/admin/servisi')
 def admin_servisi():
+    if 'korisnik_id' not in session or session.get('uloga') != 'admin':
+        return redirect('/')
     konekcija = get_db_connection()
     kursor = konekcija.cursor(dictionary=True)
     # Povlacimo sve servise, najnoviji su na vrhu
@@ -378,6 +469,45 @@ def azuriraj_status(servis_id):
     konekcija.close()
     
     return redirect(url_for('admin_servisi'))
+
+# Prikaz svih korisnika u admin panelu
+@app.route('/admin/korisnici')
+def admin_korisnici():
+    # Zastita: Samo admini mogu da pristupe
+    if 'korisnik_id' not in session or session.get('uloga') != 'admin':
+        return redirect('/')
+    
+    konekcija = get_db_connection()
+    kursor = konekcija.cursor(dictionary=True)
+    # Povlacimo sve korisnike iz baze
+    kursor.execute("SELECT id, ime, email, uloga FROM korisnici_login_info")
+    svi_korisnici = kursor.fetchall()
+    kursor.close()
+    konekcija.close()
+    
+    return render_template('admin_korisnici.html', korisnici=svi_korisnici)
+
+# Menjanje uloge korisniku
+@app.route('/admin/promeni_ulogu/<int:korisnik_id>', methods=['POST'])
+def promeni_ulogu(korisnik_id):
+    if 'korisnik_id' not in session or session.get('uloga') != 'admin':
+        return redirect('/')
+
+    # Zastita: Sprecavamo admina da slucajno obrise sam sebi prava i zakljuca se
+    if korisnik_id == session['korisnik_id']:
+        return "Ne možete sami sebi promeniti ulogu!", 400
+
+    nova_uloga = request.form.get('nova_uloga')
+    
+    konekcija = get_db_connection()
+    kursor = konekcija.cursor()
+    # Menjamo ulogu u bazi
+    kursor.execute("UPDATE korisnici_login_info SET uloga = %s WHERE id = %s", (nova_uloga, korisnik_id))
+    konekcija.commit()
+    kursor.close()
+    konekcija.close()
+    
+    return redirect(url_for('admin_korisnici'))
 
 
 # Pokretanje servera

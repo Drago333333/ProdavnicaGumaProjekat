@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Upravljanje Korisnicima - Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="background-color: #1a1a1a; color: white;">
+
+    <nav class="glavna-navigacija">
+        <div class="logo">
+            <h2><a href="/admin/servisi" style="color: white; text-decoration: none;">⚙️ Admin Panel</a></h2>
+        </div>
+        <div class="navigacija-desno" style="display: flex; gap: 20px; align-items: center;">
+            <a href="/admin/servisi" style="color: white; text-decoration: none;">📅 Upravljanje Servisima</a>
+            <a href="/" style="color: #cc0000; text-decoration: none; font-weight: bold;">⬅ NAZAD NA SAJT</a>
+        </div>
+    </nav>
+
+    <div style="padding: 40px; max-width: 1000px; margin: auto;">
+        <h2 style="margin-bottom: 20px;">Lista svih korisnika</h2>
+        
+        <table style="width: 100%; text-align: left; border-collapse: collapse; background-color: #111; border-radius: 8px; overflow: hidden;">
+            <tr style="background-color: #cc0000; color: white;">
+                <th style="padding: 15px;">ID</th>
+                <th style="padding: 15px;">Ime</th>
+                <th style="padding: 15px;">E-mail</th>
+                <th style="padding: 15px;">Trenutna Uloga</th>
+                <th style="padding: 15px;">Akcija</th>
+            </tr>
+            
+            {% for k in korisnici %}
+            <tr style="border-bottom: 1px solid #333;">
+                <td style="padding: 15px;">{{ k.id }}</td>
+                <td style="padding: 15px;">{{ k.ime }}</td>
+                <td style="padding: 15px;">{{ k.email }}</td>
+                
+                <td style="padding: 15px; font-weight: bold;">
+            {% if k.uloga == 'admin' %}
+            <span style="color: #ff4444;">{{ k.uloga|upper }}</span>
+            {% else %}
+            <span style="color: #27ae60;">{{ k.uloga|upper }}</span>
+            {% endif %}
+                </td>
+                
+                <td style="padding: 15px;">
+                    {% if k.id != session.korisnik_id %}
+                        <form action="/admin/promeni_ulogu/{{ k.id }}" method="POST" style="margin: 0;">
+                            {% if k.uloga == 'korisnik' %}
+                                <input type="hidden" name="nova_uloga" value="admin">
+                                <button type="submit" style="background-color: #cc0000; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">
+                                    Unapredi u Admina
+                                </button>
+                            {% else %}
+                                <input type="hidden" name="nova_uloga" value="korisnik">
+                                <button type="submit" style="background-color: #555; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">
+                                    Ukloni Admin Prava
+                                </button>
+                            {% endif %}
+                        </form>
+                    {% else %}
+                        <span style="color: #888; font-size: 13px;">(Vaš nalog)</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

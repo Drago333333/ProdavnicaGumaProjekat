@@ -49,11 +49,19 @@
         </ul>
         
         <div class="desktop-ikone">
-            <a href="/korpa" class="korpa-link">
-                🛒 Moja korpa 
-                <span class="korpa-brojac">{{ session.korpa|length if session.korpa else 0 }}</span>
-            </a>
-        </div>
+    {% if 'korisnik_id' in session %}
+        {% if session.get('uloga') == 'admin' %}
+            <a href="/admin/servisi" style="color: #cc0000; text-decoration: none; margin-right: 20px; font-weight: bold;">⚙️ Admin Panel</a>
+        {% endif %}
+        <a href="/logout" style="color: white; text-decoration: none; margin-right: 20px;">🚪 Odjavi se</a>
+    {% else %}
+        <a href="/login" style="color: white; text-decoration: none; margin-right: 20px;">👤 Prijavi se</a>
+    {% endif %}
+    <a href="/korpa" class="korpa-link" style="color: white; text-decoration: none;">
+        🛒 Moja korpa 
+        <span class="korpa-brojac">{{ session.korpa|length if session.korpa else 0 }}</span>
+    </a>
+</div>
     </nav>
 
 <section class="hero-sekcija">

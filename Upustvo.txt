@@ -1,9 +1,0 @@
-Ove komande redom kucati u terminal (precica ctrl+`)
-
-pip install Flask
-
-pip install mysql-connector-python
-
--Instalirati python extenizju, klikne se sa strane na Extensions karticu i pretrazi se python i zatim se klikne na install
-
-

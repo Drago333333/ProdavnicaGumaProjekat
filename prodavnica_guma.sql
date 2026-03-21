@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2026 at 02:43 PM
+-- Generation Time: Mar 21, 2026 at 12:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -132,6 +132,30 @@ CREATE TABLE `korisnici` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `korisnici_login_info`
+--
+
+CREATE TABLE `korisnici_login_info` (
+  `id` int(11) NOT NULL,
+  `ime` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `lozinka` varchar(255) NOT NULL,
+  `uloga` enum('korisnik','admin') DEFAULT 'korisnik',
+  `sacuvana_korpa` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `korisnici_login_info`
+--
+
+INSERT INTO `korisnici_login_info` (`id`, `ime`, `email`, `lozinka`, `uloga`, `sacuvana_korpa`) VALUES
+(3, 'Drago Biorac', 'dragobiorac@gmail.com', 'scrypt:32768:8:1$rzl5vednCmoYTzYY$094c22eb6bd43b0c41a084e0ccae7872d8f8cf108960976c7d75b370508624464aa5a7e15f259f6df6b73e38fb12536c661c702196fb9bd2835842f7db5c891e', 'admin', '[]'),
+(4, 'Petar Petrovic', 'dragoduellinks@gmail.com', 'scrypt:32768:8:1$yyXl09oiy3HmtIhD$0a259835c789935a4322c2e49ebc2b4769ba22e8918cf4cb2772f4359abbe5672b03b9089c12e73f234c543b9d9096e3c632ab1558e8b61a5172d27cffe50347', 'korisnik', NULL),
+(5, 'Admin', 'admin@gmail.com', 'scrypt:32768:8:1$1dEYRNocHsdSvqCV$a2e44117fdd2cce139b9750ad128db4a78f5009f893475e5136675240d0aee9eca68dce5a01f32c243681a893ec0956ad21dcdf8bbdcc73d699b173a332b1f52', 'admin', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `porudzbine`
 --
 
@@ -152,7 +176,9 @@ INSERT INTO `porudzbine` (`id`, `ime_prezime`, `adresa`, `telefon`, `ukupna_cena
 (6, 'Drago Biorac', 'Milevina 32', '061454353434', 54107.00, '2026-03-17 13:34:54'),
 (7, 'Drago Biorac', 'merlina 39', '061 8888885', 15300.00, '2026-03-17 15:25:56'),
 (8, 'Drago Biorac', 'milevina 89', '065 8990009', 15300.00, '2026-03-18 13:55:46'),
-(12, 'Drago Biorac', 'asdas 67', '067 3232344', 30150.00, '2026-03-19 14:06:26');
+(12, 'Drago Biorac', 'asdas 67', '067 3232344', 30150.00, '2026-03-19 14:06:26'),
+(13, 'Drago Biorac', 'Terzia 98', '069 890665', 21150.00, '2026-03-19 16:37:17'),
+(14, 'Drago Biorac', 'milevina 39', '067 7897665', 30150.00, '2026-03-21 11:33:06');
 
 -- --------------------------------------------------------
 
@@ -205,7 +231,14 @@ INSERT INTO `stavke_porudzbine` (`id`, `porudzbina_id`, `guma_id`, `naziv_gume`,
 (1, 12, 1, 'Pilot Sport 4', 1, 9900.00),
 (2, 12, 2, 'Greenways', 1, 5400.00),
 (3, 12, 3, 'Snoways 4', 1, 5850.00),
-(4, 12, 4, 'Cinturato Winter 2', 1, 9000.00);
+(4, 12, 4, 'Cinturato Winter 2', 1, 9000.00),
+(5, 13, 1, 'Pilot Sport 4', 1, 9900.00),
+(6, 13, 2, 'Greenways', 1, 5400.00),
+(7, 13, 3, 'Snoways 4', 1, 5850.00),
+(8, 14, 1, 'Pilot Sport 4', 1, 9900.00),
+(9, 14, 2, 'Greenways', 1, 5400.00),
+(10, 14, 3, 'Snoways 4', 1, 5850.00),
+(11, 14, 4, 'Cinturato Winter 2', 1, 9000.00);
 
 -- --------------------------------------------------------
 
@@ -230,8 +263,8 @@ CREATE TABLE `zakazivanje_servisa` (
 --
 
 INSERT INTO `zakazivanje_servisa` (`id`, `ime_prezime`, `telefon`, `email`, `vozilo`, `vrsta_usluge`, `datum_servisa`, `status`, `datum_kreiranja`) VALUES
-(3, 'dasdas', '6786', 'dasdas@gmail.com', 'dasdas', 'Mali servis', '2026-03-26', 'Na čekanju', '2026-03-10 14:30:17'),
-(4, 'Petar Petrovic', '061890978', 'dragoduellinks@gmail.com', 'Skoda', 'Montaža i balansiranje guma', '2026-03-18', 'U procesu', '2026-03-17 13:32:43');
+(3, 'dasdas', '6786', 'dasdas@gmail.com', 'dasdas', 'Mali servis', '2026-03-26', 'Gotovo', '2026-03-10 14:30:17'),
+(4, 'Petar Petrovic', '061890978', 'dragoduellinks@gmail.com', 'Skoda', 'Montaža i balansiranje guma', '2026-03-18', 'Gotovo', '2026-03-17 13:32:43');
 
 --
 -- Indexes for dumped tables
@@ -255,6 +288,13 @@ ALTER TABLE `kategorije`
 -- Indexes for table `korisnici`
 --
 ALTER TABLE `korisnici`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `korisnici_login_info`
+--
+ALTER TABLE `korisnici_login_info`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
@@ -307,10 +347,16 @@ ALTER TABLE `korisnici`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `korisnici_login_info`
+--
+ALTER TABLE `korisnici_login_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `porudzbine`
 --
 ALTER TABLE `porudzbine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `proizvodjaci`
@@ -322,7 +368,7 @@ ALTER TABLE `proizvodjaci`
 -- AUTO_INCREMENT for table `stavke_porudzbine`
 --
 ALTER TABLE `stavke_porudzbine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `zakazivanje_servisa`
